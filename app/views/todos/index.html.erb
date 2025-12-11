@@ -1,9 +1,36 @@
 <h1> My Todo List </h1>
+<a href = "/todos/new" role="button"> + Add New Task</a>
 
-<ul>
-    <% @todos.each do |todo| %>
-        <li>
-            <%= todo.title %>
-        </li>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Status</th>
+            <th>Task</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @todos.each do |todo| %>
+            <tr>
+                <td>
+                    <% if todo.completed %>
+                        Done
+                    <% else %>
+                        Pending
+                    <% end %>
+                </td>
+
+                <td><%= todo.title %></td>
+
+                <td><%= todo.start_time %></td>
+                <td><%= todo.end_time %></td>
+
+                <td>
+                    <a href="<%= edit_todo_path(todo) %>">Edit</a>
+        </td>
+      </tr>
     <% end %>
-</ul>
+  </tbody>
+</table>
