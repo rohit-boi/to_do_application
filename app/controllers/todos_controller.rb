@@ -36,7 +36,14 @@ class TodosController < ApplicationController
             render :edit #if fails,shows the edit form again
         end
     end
-    
+
+    def destroy
+        @todo = Todo.find(params[:id])
+        @todo.destroy
+
+        redirect_to root_path, status: :see_other
+    end
+
 
 
     private

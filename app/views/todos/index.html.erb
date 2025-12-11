@@ -1,7 +1,7 @@
 <h1> My Todo List </h1>
-<a href = "/todos/new" role="button"> + Add New Task</a>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 50px">
 
-<table border="1">
+<table border="3">
     <thead>
         <tr>
             <th>Status</th>
@@ -28,9 +28,26 @@
                 <td><%= todo.end_time %></td>
 
                 <td>
-                    <a href="<%= edit_todo_path(todo) %>">Edit</a>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            
+            <%= link_to "Edit", edit_todo_path(todo), 
+                role: "button", 
+                class: "secondary", 
+                style: "margin-bottom: 0; padding-top: 5px; padding-bottom: 5px;" %>
+
+            <%= button_to "Delete", todo_path(todo), 
+                method: :delete,
+                form: { style: "margin-bottom: 0;" }, 
+                style: "background-color: red; border-color: red; margin-bottom: 0; padding-top: 5px; padding-bottom: 5px;",
+                data: { turbo_confirm: "Are you sure?" } %>
+          </div>
+        </td>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<a href = "/todos/new" role="button"> + Add New Task</a>
+
+</div>
